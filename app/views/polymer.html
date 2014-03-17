@@ -1,0 +1,85 @@
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#">About</a></li>
+        <li><a ng-href="#">Contact</a></li>
+    </ul>
+    <h3 class="text-muted">Marvel Application</h3>
+</div>
+
+
+<polymer-element name="super-hero" attributes="hero">
+    <template>
+        <div class="hero">
+            <span class="profile">
+                <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
+            </span>
+
+            <div class="info">
+                <div class="desc">
+                    <strong>{{ hero.name }}</strong>
+                    <span>{{ hero.description }}</span>
+                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{hireMe}}"><span
+                            class="glyphicon glyphicon-star"></span> Hire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer('super-hero', {
+            ready: function () {
+                this.hero = JSON.parse(this.hero); // TODO Better way to pass attribute as JSON?
+                console.log('New hero %s', this.hero.name);
+            },
+            hireMe: function() {
+                console.log('Hire hero');
+            }
+        });
+    </script>
+</polymer-element>
+
+
+<h2>Heros</h2>
+<div class="row">
+
+    <div ng-repeat="hero in heros | startFrom: begin | limitTo: 3" class="col-lg-4 col-md-4 col-sm-4">
+        <super-hero hero="{{ hero }}"></super-hero>
+    </div>
+</div>
+<div class="row " style="margin: 10px 5px;">
+    <!-- TODO Why null when clicking on these buttons? -->
+    <button class="btn btn-default btn-xs pull-left" ng-click="begin = begin - 1"><span
+            class="glyphicon glyphicon-backward"></span> Prev
+    </button>
+    <button class="btn btn-default btn-xs pull-right" ng-click="begin = begin + 1">Next <span
+            class="glyphicon glyphicon-forward"></span></button>
+</div>
+
+<hr/>
+<h2>Your Team</h2>
+<!--<div class="row">-->
+    <!--<div ng-repeat="hero in team" class="col-lg-4 col-md-4 col-sm-4">-->
+        <!--<div class="hero">-->
+      <!--<span class="profile">-->
+        <!--<img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">-->
+      <!--</span>-->
+
+            <!--<div class="info">-->
+                <!--<div class="desc">-->
+                    <!--<strong>{{ hero.name }}</strong>-->
+                    <!--<span>{{ hero.description }}</span>-->
+                    <!--<button type="button" class="btn btn-danger btn-sm hire" ng-click="fire(hero)"><span-->
+                            <!--class="glyphicon glyphicon-remove-circle"></span> Fire-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<div class="footer">
+    <p>Made with love by <a href="https://twitter.com/romaintaz">Romain</a> and <a href="https://twitter.com/jak78">Julien</a>
+        for <a href="http://www.devoxx.fr">Devoxx France 2014</a></p>
+</div>
