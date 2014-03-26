@@ -1,4 +1,4 @@
-<polymer-element name="super-hero" attributes="hero">
+<polymer-element name="super-hero" attributes="heroId">
     <template>
         <div class="hero">
             <span class="profile">
@@ -24,11 +24,8 @@
             };
             return {
                 ready: function () {
-                    var heroId = this.hero;
-                    console.log('hero id',heroId);
+                    var heroId = this.heroId;
                     this.hero = fetch(heroId);
-                    console.log('New hero %s', this.hero.name);
-
                     this.fire();
                 },
                 toggleHire: function() {
