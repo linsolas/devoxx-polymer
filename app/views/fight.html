@@ -1,0 +1,141 @@
+<div class="header">
+    <ul class="nav nav-pills pull-right">
+        <li class="active"><a ng-href="#">Home</a></li>
+        <li><a ng-href="#">About</a></li>
+        <li><a ng-href="#">Contact</a></li>
+    </ul>
+    <h3 class="text-muted">Marvel Application powered by Polymer</h3>
+</div>
+
+<h2>Heroes</h2>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4" ng-repeat="h in heroes | startFrom: begin | limitTo: 3">
+        <super-hero heroId="{{ h.id }}" inArena="false"></super-hero>
+    </div>
+</div>
+<div class="row " style="margin: 10px 5px;">
+    <!-- TODO Why null when clicking on these buttons? -->
+    <button class="btn btn-default btn-xs pull-left" ng-click="begin = begin - 1"><span
+            class="glyphicon glyphicon-backward"></span> Prev
+    </button>
+    <button class="btn btn-default btn-xs pull-right" ng-click="begin = begin + 1">Next <span
+            class="glyphicon glyphicon-forward"></span></button>
+</div>
+
+<hr>
+
+<h2>Arena</h2>
+
+<fight-arena heroId1="1009148" heroId2="1011266"></fight-arena>
+
+
+
+<polymer-element name="super-hero" attributes="heroId,inArena">
+    <template>
+        <div class="hero">
+            <span class="profile">
+                <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
+            </span>
+
+            <div class="info">
+                <div class="desc">
+                    <strong>{{ hero.name }}</strong>
+                    <span>{{ hero.description }}</span>
+                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{ toggleHire }}"><span
+                            class="glyphicon glyphicon-star"></span> {{ hireText }}
+                    </button>
+                </div>
+            </div>
+            <div class="fights">
+                In Arena? {{ inArena }} -
+                {{ wins + losses }} fights: {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
+            </div>
+        </div>
+    </template>
+    <script>
+        var module = (function() {
+            var fetch = function(id) {
+                var storedHero = localStorage.getItem('hero.' + id);
+                return JSON.parse(storedHero);
+            };
+            return {
+                ready: function () {
+                    this.hero = fetch(this.heroId);
+                    this.hired = false;
+                    this.wins = 0;
+                    this.losses = 0;
+                    this.addEventListener('fight', this.fight);
+                },
+                toggleHire: function() {
+                    this.hired = ! this.hired;
+                },
+                hiredChanged: function() {
+                    if( this.hired )  {
+                        this.hireText = "Release me";
+                    } else {
+                        this.hireText = "Select me";
+                    }
+                },
+                fight: function() {
+                    var res = Math.random();
+                    console.log('Hero %s -> %s', this.hero.id, res);
+                    return res;
+//                },
+//                onWin: function() {
+//                    this.wins++;
+//                },
+//                onLoss: function() {
+//                    this.losses++;
+                }
+            }
+        })();
+        Polymer('super-hero', module);
+    </script>
+</polymer-element>
+
+<polymer-element name="fight-arena" attributes="heroId1, heroId2">
+    <template>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1" id="fighter-1">
+                <super-hero heroId="1009148" inArena="true"></super-hero>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: center; vertical-align: middle;">
+                <button type="button" class="btn btn-danger" on-click="{{ fight }}">FIGHT</button>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4" id="fighter-2">
+                <super-hero heroId="1011266" inArena="true"></super-hero>
+            </div>
+
+        </div>
+    </template>
+    <script>
+        var module = (function() {
+            var fetch = function(id) {
+                var storedHero = localStorage.getItem('hero.' + id);
+                return JSON.parse(storedHero);
+            };
+            return {
+                ready: function() {
+                    this.hero1 = fetch(this.heroId1);
+                    this.hero2 = fetch(this.heroId2);
+                    console.log('SO: %s, %s', this.hero1.id, this.hero2.id);
+                },
+                fight: function() {
+                    console.log('Start the FIGHT');
+                    this.fire('fight');
+                }
+            };
+        })();
+        Polymer('fight-arena', module);
+    </script>
+</polymer-element>
+
+
+<br>
+
+<div class="footer">
+    <p>Made with love by <a href="https://twitter.com/romaintaz">Romain</a> and <a href="https://twitter.com/jak78">Julien</a>
+        for <a href="http://www.devoxx.fr">Devoxx France 2014</a></p>
+</div>

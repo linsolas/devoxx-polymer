@@ -16,6 +16,10 @@ angular.module('testMarvelApp', [
                 templateUrl: 'views/polymer.html',
                 controller: 'MainCtrl'
             })
+            .when('/fight', {
+                templateUrl: 'views/fight.html',
+                controller: 'MainCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
