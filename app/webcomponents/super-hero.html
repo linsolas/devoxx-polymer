@@ -17,17 +17,23 @@
         </div>
     </template>
     <script>
-        Polymer('super-hero', {
-            ready: function () {
-                console.log('ready');
-                var id = this.hero;
-                console.log('hero id',id);
-                this.hero = JSON.parse(localStorage.getItem('hero.'+id));
-                console.log('New hero %s', this.hero.name);
-            },
-            hireMe: function() {
-                console.log('Hire %s', this.hero.name);
+        var module = (function() {
+            var fetch = function(id) {
+                var storedHero = localStorage.getItem('hero.' + id);
+                return JSON.parse(storedHero);
+            };
+            return {
+                ready: function () {
+                    var heroId = this.hero;
+                    console.log('hero id',heroId);
+                    this.hero = fetch(heroId);
+                    console.log('New hero %s', this.hero.name);
+                },
+                hireMe: function() {
+                    console.log('Hire %s', this.hero.name);
+                }
             }
-        });
+        })();
+        Polymer('super-hero', module);
     </script>
 </polymer-element>

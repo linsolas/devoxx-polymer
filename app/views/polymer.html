@@ -7,23 +7,25 @@
     <h3 class="text-muted">Marvel Application powered by Polymer</h3>
 </div>
 
+<h2>One hero</h2>
+<super-hero hero="1017100">
+
 <h2>Heros</h2>
-<div class="row">
+<!--<div class="row">-->
 
-    <div ng-repeat="hero in heros | startFrom: begin | limitTo: 3" class="col-lg-4 col-md-4 col-sm-4">
-        <super-hero hero="{{ hero.id }}"></super-hero>
-    </div>
-</div>
-<div class="row " style="margin: 10px 5px;">
-    <!-- TODO Why null when clicking on these buttons? -->
-    <button class="btn btn-default btn-xs pull-left" ng-click="begin = begin - 1"><span
-            class="glyphicon glyphicon-backward"></span> Prev
-    </button>
-    <button class="btn btn-default btn-xs pull-right" ng-click="begin = begin + 1">Next <span
-            class="glyphicon glyphicon-forward"></span></button>
-</div>
+    <!--<div ng-repeat="hero in heros | startFrom: begin | limitTo: 3" class="col-lg-4 col-md-4 col-sm-4">-->
+        <!--<super-hero hero="{{ hero.id }}"></super-hero>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="row " style="margin: 10px 5px;">-->
+    <!--&lt;!&ndash; TODO Why null when clicking on these buttons? &ndash;&gt;-->
+    <!--<button class="btn btn-default btn-xs pull-left" ng-click="begin = begin - 1"><span-->
+            <!--class="glyphicon glyphicon-backward"></span> Prev-->
+    <!--</button>-->
+    <!--<button class="btn btn-default btn-xs pull-right" ng-click="begin = begin + 1">Next <span-->
+            <!--class="glyphicon glyphicon-forward"></span></button>-->
+<!--</div>-->
 
-<hr/>
 <h2>Your Team</h2>
 <!--<div class="row">-->
     <!--<div ng-repeat="hero in team" class="col-lg-4 col-md-4 col-sm-4">-->
