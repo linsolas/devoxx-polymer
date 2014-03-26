@@ -24,24 +24,18 @@
             };
             return {
                 ready: function () {
-                    var heroId = this.heroId;
-                    this.hero = fetch(heroId);
-                    this.fire();
+                    this.hero = fetch(this.heroId);
+                    this.hired = false;
                 },
                 toggleHire: function() {
-                    if( this.hired ) {
-                        this.fire();
+                    this.hired = ! this.hired;
+                },
+                hiredChanged: function() {
+                    if( this.hired )  {
+                        this.hireText = "Fire me";
                     } else {
-                        this.hire();
+                        this.hireText = "Hire me";
                     }
-                },
-                fire: function() {
-                    this.hired = false;
-                    this.hireText = "Hire me!";
-                },
-                hire: function() {
-                    this.hired = true;
-                    this.hireText = "Fire me!";
                 }
             }
         })();
