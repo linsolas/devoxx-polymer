@@ -9,8 +9,8 @@
                 <div class="desc">
                     <strong>{{ hero.name }}</strong>
                     <span>{{ hero.description }}</span>
-                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{hireMe}}"><span
-                            class="glyphicon glyphicon-star"></span> Hire
+                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{toggleHire}}"><span
+                            class="glyphicon glyphicon-star"></span> {{hireText}}
                     </button>
                 </div>
             </div>
@@ -28,9 +28,23 @@
                     console.log('hero id',heroId);
                     this.hero = fetch(heroId);
                     console.log('New hero %s', this.hero.name);
+
+                    this.fire();
                 },
-                hireMe: function() {
-                    console.log('Hire %s', this.hero.name);
+                toggleHire: function() {
+                    if( this.hired ) {
+                        this.fire();
+                    } else {
+                        this.hire();
+                    }
+                },
+                fire: function() {
+                    this.hired = false;
+                    this.hireText = "Hire me!";
+                },
+                hire: function() {
+                    this.hired = true;
+                    this.hireText = "Fire me!";
                 }
             }
         })();
