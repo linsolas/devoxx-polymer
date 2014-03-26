@@ -7,39 +7,6 @@
     <h3 class="text-muted">Marvel Application powered by Polymer</h3>
 </div>
 
-
-<polymer-element name="super-hero" attributes="hero">
-    <template>
-        <div class="hero">
-            <span class="profile">
-                <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
-            </span>
-
-            <div class="info">
-                <div class="desc">
-                    <strong>{{ hero.name }}</strong>
-                    <span>{{ hero.description }}</span>
-                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{hireMe}}"><span
-                            class="glyphicon glyphicon-star"></span> Hire
-                    </button>
-                </div>
-            </div>
-        </div>
-    </template>
-    <script>
-        Polymer('super-hero', {
-            ready: function () {
-                this.hero = JSON.parse(this.hero); // TODO Better way to pass attribute as JSON?
-                console.log('New hero %s', this.hero.name);
-            },
-            hireMe: function() {
-                console.log('Hire hero');
-            }
-        });
-    </script>
-</polymer-element>
-
-
 <h2>Heros</h2>
 <div class="row">
 
