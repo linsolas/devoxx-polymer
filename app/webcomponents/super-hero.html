@@ -19,11 +19,14 @@
     <script>
         Polymer('super-hero', {
             ready: function () {
-                this.hero = JSON.parse(this.hero); // TODO Better way to pass attribute as JSON?
+                console.log('ready');
+                var id = this.hero;
+                console.log('hero id',id);
+                this.hero = JSON.parse(localStorage.getItem('hero.'+id));
                 console.log('New hero %s', this.hero.name);
             },
             hireMe: function() {
-                console.log('Hire hero');
+                console.log('Hire %s', this.hero.name);
             }
         });
     </script>

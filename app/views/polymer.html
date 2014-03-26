@@ -11,7 +11,7 @@
 <div class="row">
 
     <div ng-repeat="hero in heros | startFrom: begin | limitTo: 3" class="col-lg-4 col-md-4 col-sm-4">
-        <super-hero hero="{{ hero }}"></super-hero>
+        <super-hero hero="{{ hero.id }}"></super-hero>
     </div>
 </div>
 <div class="row " style="margin: 10px 5px;">
