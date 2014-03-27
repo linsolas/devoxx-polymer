@@ -48,7 +48,7 @@
             </div>
             <div class="fights">
                 In Arena? {{ inArena }} -
-                {{ wins + losses }} fights: {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
+                {{ fights }} fights: {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
             </div>
         </div>
     </template>
@@ -64,6 +64,8 @@
                     this.hired = false;
                     this.wins = 0;
                     this.losses = 0;
+                    this.fights = 0;
+                    console.log('ready');
                     this.addEventListener('fight', this.fight);
                 },
                 toggleHire: function() {
@@ -83,9 +85,11 @@
 //                },
 //                onWin: function() {
 //                    this.wins++;
+//                    this.fights++;
 //                },
 //                onLoss: function() {
 //                    this.losses++;
+//                    this.fights++;
                 }
             }
         })();
