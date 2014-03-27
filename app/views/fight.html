@@ -48,7 +48,7 @@
             </div>
             <div class="fights">
                 In Arena? {{ inArena }} -
-                {{ fights }} fights: {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
+                {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
             </div>
         </div>
     </template>
@@ -64,9 +64,6 @@
                     this.hired = false;
                     this.wins = 0;
                     this.losses = 0;
-                    this.fights = 0;
-                    console.log('ready');
-                    this.addEventListener('fight', this.fight);
                 },
                 toggleHire: function() {
                     this.hired = ! this.hired;
@@ -77,19 +74,6 @@
                     } else {
                         this.hireText = "Select me";
                     }
-                },
-                fight: function() {
-                    var res = Math.random();
-                    console.log('Hero %s -> %s', this.hero.id, res);
-                    return res;
-//                },
-//                onWin: function() {
-//                    this.wins++;
-//                    this.fights++;
-//                },
-//                onLoss: function() {
-//                    this.losses++;
-//                    this.fights++;
                 }
             }
         })();
@@ -101,7 +85,7 @@
     <template>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1" id="fighter-1">
-                <super-hero heroId="1009148" inArena="true"></super-hero>
+                <super-hero id="hero1Id" heroId="1009148" inArena="true"></super-hero>
             </div>
 
             <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: center; vertical-align: middle;">
@@ -109,26 +93,25 @@
             </div>
 
             <div class="col-lg-4 col-md-4 col-sm-4" id="fighter-2">
-                <super-hero heroId="1011266" inArena="true"></super-hero>
+                <super-hero id="hero2Id" heroId="1011266" inArena="true"></super-hero>
             </div>
-
         </div>
     </template>
     <script>
         var module = (function() {
-            var fetch = function(id) {
-                var storedHero = localStorage.getItem('hero.' + id);
-                return JSON.parse(storedHero);
-            };
             return {
                 ready: function() {
-                    this.hero1 = fetch(this.heroId1);
-                    this.hero2 = fetch(this.heroId2);
-                    console.log('SO: %s, %s', this.hero1.id, this.hero2.id);
+                    this.heroComponent1 = this.$.hero1Id;
+                    this.heroComponent2 = this.$.hero2Id;
                 },
                 fight: function() {
-                    console.log('Start the FIGHT');
-                    this.fire('fight');
+                    if(Math.random() > 0.5 ) {
+                        this.heroComponent1.wins++;
+                        this.heroComponent2.losses++;
+                    } else {
+                        this.heroComponent2.wins++;
+                        this.heroComponent1.losses++;
+                    }
                 }
             };
         })();
