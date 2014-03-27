@@ -73,6 +73,12 @@
                 },
                 get fights() {
                     return this.wins + this.losses;
+                },
+                win: function() {
+                    this.wins++;
+                },
+                loose: function() {
+                    this.losses++;
                 }
             }
         })();
@@ -105,12 +111,13 @@
                 },
                 fight: function() {
                     if(Math.random() > 0.5 ) {
-                        this.heroComponent1.wins++;
-                        this.heroComponent2.losses++;
+                        this.heroComponent1.win();
+                        this.heroComponent2.loose();
                     } else {
-                        this.heroComponent2.wins++;
-                        this.heroComponent1.losses++;
+                        this.heroComponent1.loose();
+                        this.heroComponent2.win();
                     }
+
                 }
             };
         })();
