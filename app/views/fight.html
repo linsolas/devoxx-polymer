@@ -48,7 +48,7 @@
             </div>
             <div class="fights">
                 In Arena? {{ inArena }} -
-                {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
+                {{ fights }} fights | {{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span> | {{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span>
             </div>
         </div>
     </template>
@@ -74,6 +74,9 @@
                     } else {
                         this.hireText = "Select me";
                     }
+                },
+                get fights() {
+                    return this.wins + this.losses;
                 }
             }
         })();
