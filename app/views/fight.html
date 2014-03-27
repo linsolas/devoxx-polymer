@@ -68,12 +68,8 @@
                 toggleHire: function() {
                     this.hired = ! this.hired;
                 },
-                hiredChanged: function() {
-                    if( this.hired )  {
-                        this.hireText = "Release me";
-                    } else {
-                        this.hireText = "Select me";
-                    }
+                get hireText() {
+                    return this.hired ? "Release me" : "Select me";
                 },
                 get fights() {
                     return this.wins + this.losses;
