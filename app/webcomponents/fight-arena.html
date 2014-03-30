@@ -1,0 +1,42 @@
+<polymer-element name="fight-arena">
+    <template>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-1" id="fighter-1">
+                <super-hero id="hero1Id" heroId="1009148" inArena="true"></super-hero>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2" style="text-align: center; vertical-align: middle;">
+                <button type="button" class="btn btn-danger" on-click="{{ fight }}"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+                <pre id="results" style="border: solid 1px darkgrey; margin-top: 10px; width: 170px; height: 170px; overflow-y: auto; padding: 0; text-align: left;">{{ results }}</pre>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4" id="fighter-2">
+                <super-hero id="hero2Id" heroId="1011266" inArena="true"></super-hero>
+            </div>
+        </div>
+    </template>
+    <script>
+        var module = (function() {
+            return {
+                ready: function() {
+                    this.heroComponent1 = this.$.hero1Id;
+                    this.heroComponent2 = this.$.hero2Id;
+                    this.results = '';
+                    this.fightCount = 0;
+                },
+                fight: function() {
+                    if ( Math.random() > 0.5 ) {
+                        this.heroComponent1.win();
+                        this.heroComponent2.loose();
+                        this.results += 'LEFT won fight #' + ++this.fightCount + '\n';
+                    } else {
+                        this.heroComponent1.loose();
+                        this.heroComponent2.win();
+                        this.results += 'RIGHT won fight #' + ++this.fightCount + '\n';
+                    }
+                }
+            };
+        })();
+        Polymer('fight-arena', module);
+    </script>
+</polymer-element>

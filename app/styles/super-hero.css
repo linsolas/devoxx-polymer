@@ -1,0 +1,55 @@
+.hero {
+  border: solid 1px darkgrey;
+  border-radius: 5px;
+  height: 210px;
+  box-shadow: 3px 3px 3px darkgrey;
+  transition: box-shadow 1s;
+  vertical-align: top;
+}
+/*.hero:hover {*/
+    /*box-shadow: 0 0 50px green;*/
+/*}*/
+
+.hero * {
+  display: inline-block;
+}
+
+.hero .profile {
+  width: 170px;
+  margin: 2px;
+}
+.hero .profile img {
+  width: 170px;
+  height: 184px;
+}
+
+.hero .info {
+  position: absolute;
+  margin: 2px;
+  width: 180px;
+  height: 184px;
+  /*
+  border-left: solid 1px darkgrey;
+  */
+}
+.hero .info .desc {
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  overflow: hidden;
+  height: 184px;
+  width: 180px;
+}
+.hero .info .hire {
+  text-align: right;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.hero .fights {
+    display: block;
+    border-top: dotted 1px darkgray;
+    width: 100%;
+    height: 18px;
+    font-weight: bold;
+    text-align: center;
+}

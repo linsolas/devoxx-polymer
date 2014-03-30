@@ -38,8 +38,6 @@ angular.module('testMarvelApp').controller('MainCtrl', function ($scope, marvelS
     }
 
 
-    console.log('******* AFTER');
-
     $scope.hire = function(hero) {
         console.log('Hire hero %s', hero.id);
     	var index = $scope.heroes.indexOf(hero);

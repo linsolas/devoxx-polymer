@@ -1,6 +1,7 @@
-<polymer-element name="super-hero" attributes="heroId">
+<polymer-element name="super-hero" attributes="heroId,inArena">
     <template>
-        <div class="hero">
+        <link rel="stylesheet" href="../styles/super-hero.css">
+        <div id="box" class="hero">
             <span class="profile">
                 <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
             </span>
@@ -9,10 +10,15 @@
                 <div class="desc">
                     <strong>{{ hero.name }}</strong>
                     <span>{{ hero.description }}</span>
-                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{toggleHire}}"><span
-                            class="glyphicon glyphicon-star"></span> {{hireText}}
+                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{ toggleHire }}"><span
+                            class="glyphicon glyphicon-star"></span> {{ hireText }}
                     </button>
                 </div>
+            </div>
+            <div class="fights">
+                {{ fights }} fights |
+                <span style="color: green">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
+                <span style="color: red">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
             </div>
         </div>
     </template>
@@ -24,18 +30,38 @@
             };
             return {
                 ready: function () {
+//                    this.border = 'box-shadow: 3px 3px 3px darkgrey';
                     this.hero = fetch(this.heroId);
                     this.hired = false;
+                    this.wins = 0;
+                    this.losses = 0;
                 },
                 toggleHire: function() {
                     this.hired = ! this.hired;
                 },
-                hiredChanged: function() {
-                    if( this.hired )  {
-                        this.hireText = "Fire me";
-                    } else {
-                        this.hireText = "Hire me";
-                    }
+                get hireText() {
+                    return this.hired ? "Release me" : "Select me";
+                },
+                get fights() {
+                    return this.wins + this.losses;
+                },
+                animate: function(win) {
+                    var animation = new Animation(this.$.box, [
+                        { "box-shadow": "3px 3px 3px darkgrey" },
+                        { "box-shadow": "0 0 50px " + (win ? 'green' : 'red') }
+                    ], {
+                        duration: 2,
+                        delay: win ? 0 : 0.5
+                    });
+                    document.timeline.play(animation);
+                },
+                win: function() {
+                    this.animate(true);
+                    this.wins++;
+                },
+                loose: function() {
+                    this.animate(false);
+                    this.losses++;
                 }
             }
         })();
