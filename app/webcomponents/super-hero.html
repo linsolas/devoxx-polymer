@@ -11,7 +11,7 @@
                     <strong>{{ hero.name }}</strong>
                     <span>{{ hero.description }}</span>
                     <button type="button" class="btn btn-primary btn-sm hire" on-click="{{ toggleHire }}"><span
-                            class="glyphicon glyphicon-star"></span> {{ hireText }}
+                        class="glyphicon glyphicon-star"></span> {{ hireText }}
                     </button>
                 </div>
             </div>
@@ -22,9 +22,23 @@
             </div>
         </div>
     </template>
+
+    <script src="../scripts/super-hero.js"></script>
+
     <script>
         var module = (function() {
             var fetch = function(id) {
+//                console.log('Fetch data...');
+//                jQuery.get('http://gateway.marvel.com/v1/public/characters/' + id + '?apikey=52ee0500e06b3f33ae51bf0a8922100b', function(data) {
+//                    console.log('Data received');
+//                    console.dir(data);
+//                    var hero = data.data.results[0];
+//                    console.dir(hero);
+//                    return hero;
+//                });
+//                console.log('Return HERO');
+//                console.dir(hero);
+//                return hero;
                 var storedHero = localStorage.getItem('hero.' + id);
                 return JSON.parse(storedHero);
             };
@@ -38,22 +52,22 @@
                 },
                 toggleHire: function() {
                     this.hired = ! this.hired;
+                    if (this.hired) {
+                        console.log('Hero %s hired...', this.heroId);
+                        document.querySelector('#fightArena').addFighter(this);
+                    }
                 },
+
                 get hireText() {
                     return this.hired ? "Release me" : "Select me";
                 },
                 get fights() {
                     return this.wins + this.losses;
                 },
+
                 animate: function(win) {
-                    var animation = new Animation(this.$.box, [
-                        { "box-shadow": "3px 3px 3px darkgrey" },
-                        { "box-shadow": "0 0 50px " + (win ? 'green' : 'red') }
-                    ], {
-                        duration: 2,
-                        delay: win ? 0 : 0.5
-                    });
-                    document.timeline.play(animation);
+                    var anim = createAnimation(this.$.box, win);
+                    document.timeline.play(anim);
                 },
                 win: function() {
                     this.animate(true);

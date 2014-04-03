@@ -1,0 +1,26 @@
+<polymer-element name="foo-bar">
+    <template id="fooTemplate">
+        <div id="lol" style="border: solid 1px red">Hello World</div>
+    </template>
+    <script>
+            var module = (function() {
+
+                return {
+                    created: function() {
+                        console.log('Creation of FOO BAR');
+                    },
+                    ready: function() {
+                        console.log('READY FOO BAR');
+                        var root = document.createElement('div');
+                        var shadow = root.createShadowRoot();
+                        shadow.innerHTML = '<div style="border: solid 1px blue">Bonjour le monde</div>';
+                        this.$.lol.appendChild(root);
+                        console.log('-------------');
+                    }
+
+                }
+
+            })();
+            Polymer('foo-bar', module);
+    </script>
+</polymer-element>
