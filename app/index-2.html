@@ -1,0 +1,74 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="styles/main.css">
+
+      <script src="bower_components/platform/platform.js"></script>
+      <script src="bower_components/polymer/polymer.js"></script>
+      <script src="bower_components/web-animations-js/web-animations.js"></script>
+
+      <link rel="import" href="webcomponents/super-hero.html">
+  </head>
+  <body>
+
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a ng-href="#">Home</a></li>
+                <li><a ng-href="#">About</a></li>
+                <li><a ng-href="#">Contact</a></li>
+            </ul>
+            <h3 class="text-muted">Marvel Application powered by Polymer</h3>
+        </div>
+
+        <div class="row">
+            <button class="btn btn-danger" onclick="selectOne()">FIGHT</button>
+        </div>
+
+        <h2>Heroes</h2>
+        <div class="row">
+            <super-hero heroId="1011266"></super-hero>
+            <super-hero heroId="1009148"></super-hero>
+            <super-hero heroId="1011297"></super-hero>
+        </div>
+        <br>
+        <div class="row">
+            <super-hero heroId="1009149"></super-hero>
+            <super-hero heroId="1009521"></super-hero>
+            <super-hero heroId="1016823"></super-hero>
+        </div>
+
+        <hr>
+
+
+
+        <br>
+
+        <div class="footer">
+            <p>Made with love by <a href="https://twitter.com/romaintaz">Romain</a> and <a href="https://twitter.com/jak78">Julien</a>
+                for <a href="http://www.devoxx.fr">Devoxx France 2014</a></p>
+        </div>
+    </div>
+
+    <script>
+        function selectOne() {
+            var heroes = document.querySelectorAll('super-hero');
+            var r = Math.floor(Math.random() * heroes.length);
+            console.log('Select ' + r);
+            for (var i = 0; i < heroes.length; i++) {
+                if (i == r) {
+                    heroes[i].win();
+                } else {
+                    heroes[i].loose();
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

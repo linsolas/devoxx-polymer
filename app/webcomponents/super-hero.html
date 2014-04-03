@@ -1,24 +1,23 @@
 <polymer-element name="super-hero" attributes="heroId,inArena">
     <template>
         <link rel="stylesheet" href="../styles/super-hero.css">
-        <div id="box" class="hero">
-            <span class="profile">
-                <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
-            </span>
+        <div class="col-lg-4">
+            <div id="box" class="hero">
+                <span class="profile">
+                    <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
+                </span>
 
-            <div class="info">
-                <div class="desc">
-                    <strong>{{ hero.name }}</strong>
-                    <span>{{ hero.description }}</span>
-                    <button type="button" class="btn btn-primary btn-sm hire" on-click="{{ toggleHire }}"><span
-                        class="glyphicon glyphicon-star"></span> {{ hireText }}
-                    </button>
+                <div class="info">
+                    <div class="desc">
+                        <strong>{{ hero.name }}</strong>
+                        <span>{{ hero.description }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="fights">
-                {{ fights }} fights |
-                <span style="color: green">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
-                <span style="color: red">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
+                <div class="fights">
+                    {{ success }}% |
+                    <span style="color: green">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
+                    <span style="color: red">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
+                </div>
             </div>
         </div>
     </template>
@@ -28,53 +27,31 @@
     <script>
         var module = (function() {
             var fetch = function(id) {
-//                console.log('Fetch data...');
-//                jQuery.get('http://gateway.marvel.com/v1/public/characters/' + id + '?apikey=52ee0500e06b3f33ae51bf0a8922100b', function(data) {
-//                    console.log('Data received');
-//                    console.dir(data);
-//                    var hero = data.data.results[0];
-//                    console.dir(hero);
-//                    return hero;
-//                });
-//                console.log('Return HERO');
-//                console.dir(hero);
-//                return hero;
                 var storedHero = localStorage.getItem('hero.' + id);
                 return JSON.parse(storedHero);
             };
             return {
                 ready: function () {
-//                    this.border = 'box-shadow: 3px 3px 3px darkgrey';
                     this.hero = fetch(this.heroId);
-                    this.hired = false;
+                    console.dir(this.hero);
                     this.wins = 0;
                     this.losses = 0;
                 },
-                toggleHire: function() {
-                    this.hired = ! this.hired;
-                    if (this.hired) {
-                        console.log('Hero %s hired...', this.heroId);
-                        document.querySelector('#fightArena').addFighter(this);
+                get success() {
+                    if (this.wins + this.losses == 0) {
+                        return '-';
                     }
+                    return Math.floor((this.wins / (this.wins + this.losses)) * 100);
                 },
 
-                get hireText() {
-                    return this.hired ? "Release me" : "Select me";
-                },
-                get fights() {
-                    return this.wins + this.losses;
-                },
-
-                animate: function(win) {
-                    var anim = createAnimation(this.$.box, win);
-                    document.timeline.play(anim);
-                },
                 win: function() {
+                    console.log('J ai gagné');
                     this.animate(true);
                     this.wins++;
+                    var animation = createAnimation(this.$.box);
+                    document.timeline.play(animation);
                 },
                 loose: function() {
-                    this.animate(false);
                     this.losses++;
                 }
             }
