@@ -1,14 +1,15 @@
 {
-    "name": "test-marvel",
-    "version": "0.0.0",
-    "dependencies": {
-        "json3": "~3.2.6",
-        "es5-shim": "~2.1.0",
-        "jquery": "~1.10.2",
-        "bootstrap": "~3.0.3",
-        "polymer": "~0.2.1"
-    },
-    "devDependencies": {
-        "polymer-elements": "~0.2.1"
-    }
+  "name": "test-marvel",
+  "version": "0.0.0",
+  "dependencies": {
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "jquery": "~1.10.2",
+    "bootstrap": "~3.0.3",
+    "polymer": "~0.2.1",
+    "polymer-animation": "PolymerLabs/polymer-animation#~0.2.2"
+  },
+  "devDependencies": {
+    "polymer-elements": "~0.2.1"
+  }
 }
