@@ -28,6 +28,17 @@
         var module = (function() {
             var fetch = function(id) {
                 var storedHero = localStorage.getItem('hero.' + id);
+                if (storedHero == null) { // Retrieve super-hero from Marvel server. Not for DEMO :o)
+                    console.log('Hero not found, looking for Marvel server...');
+                    var request = new XMLHttpRequest();
+                    request.open('GET', 'http://gateway.marvel.com/v1/public/characters/' + id + '?apikey=52ee0500e06b3f33ae51bf0a8922100b', true);
+                    request.onload = function() {
+                        var x = request.responseText;
+                        storedHero = JSON.parse(x).data.results[0];
+                        localStorage.setItem('hero.' + id, JSON.stringify(storedHero));
+                    };
+                    request.send();
+                }
                 return JSON.parse(storedHero);
             };
             return {
@@ -47,11 +58,13 @@
                 win: function() {
                     this.animate(true);
                     this.wins++;
-                    var animation = createAnimation(this.$.box);
+                    var animation = winnerAnimation(this.$.box);
                     document.timeline.play(animation);
                 },
                 loose: function() {
                     this.losses++;
+                    var animation = loserAnimation(this.$.box);
+                    document.timeline.play(animation);
                 }
             }
         })();
