@@ -54,9 +54,7 @@
                     }
                     return Math.floor((this.wins / (this.wins + this.losses)) * 100);
                 },
-
                 win: function() {
-                    this.animate(true);
                     this.wins++;
                     var animation = winnerAnimation(this.$.box);
                     document.timeline.play(animation);

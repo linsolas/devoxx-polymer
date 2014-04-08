@@ -24,7 +24,7 @@ Create a super-hero with the HTML code:
 </div>
 ```
 
-*Template* ```html-hero```.
+**Template** ```x```
 
 Create a second super-hero with a copy-paste!
 
@@ -32,6 +32,10 @@ Create a second super-hero with a copy-paste!
 ===================================
 
 ```
+<script src="bower_components/platform/platform.js"></script>
+<script src="bower_components/polymer/polymer.js"></script>
+
+
 <polymer-element name="super-hero">
     <template>
         -- HTML --
@@ -101,9 +105,117 @@ Now create heroes:
     </div>
 ```
 
-*Template* ```x```
+**Template** ```x```
 
 
 5. Start the fight!
 ===================
+
+Add a button fight:
+
+```
+    <div class="row" style="text-align: center">
+        <button class="btn btn-danger btn-lg" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+    </div>
+```
+
+and the JavaScript ```selectOne``` function:
+
+```
+<script>
+    function selectOne() {
+        var heroes = document.querySelectorAll('super-hero');
+        var r = Math.floor(Math.random() * heroes.length);
+        for (var i = 0; i < heroes.length; i++) {
+            if (i == r) {
+                // WIN
+            } else {
+                // LOSE
+            }
+        }
+    }
+</script>
+```
+
+**Template** ```x```
+
+Add ```win()``` and ```lose()``` functions in ```<super-hero>``` component:
+
+```
+    <div class="fights">
+        {{ success }}% |
+        <span style="color: green">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
+        <span style="color: red">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
+    </div>
+```
+
+
+```
+    get success() {
+        if (this.wins + this.losses == 0) {
+            return '-';
+        }
+        return Math.floor((this.wins / (this.wins + this.losses)) * 100);
+    },
+    win: function() {
+        this.wins++;
+    },
+    loose: function() {
+        this.losses++;
+    }
+```
+
+**Template** ```x```
+
+
+6. Finalization
+===============
+
+Create a web-animation:
+
+```<script src="bower_components/web-animations-js/web-animations.js"></script>```
+
+in ```win()``` method:
+
+```
+    win: function() {
+        this.wins++;
+        var animation = new Animation(elt, [
+            { "box-shadow": "3px 3px 3px darkgrey" },
+            { "box-shadow": "0 0 50px green" }
+        ], {
+            duration: 2
+        });
+        document.timeline.play(animation);
+    }
+```
+
+**Template*** ```x```
+
+and for ```lose()```:
+
+```
+    loose: function() {
+        this.losses++;
+        var animation = new Animation(elt, [
+            { "opacity": 1 },
+            { "opacity": 0 },
+            { "opacity": 1 }
+        ], {
+            duration: 2,
+            delay: 1
+        });
+        document.timeline.play(animation);
+    }
+```
+
+**Template*** ```x```
+
+Move this code in ```super-hero.js``` and add ```<script src="../scripts/super-hero.js"></script>``` in Polymer component.
+
+Move all ```<polymer-element>``` code in ```super-hero.html``` and add ```<link rel="import" href="webcomponents/super-hero.html">``` in HTML page.
+
+
+7. Finish presentation with Polymer overview
+============================================
 
