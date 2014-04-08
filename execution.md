@@ -1,10 +1,7 @@
-1. Empty page
-=============
-
-Start with an empty HTML page.
-
-2. Create a super-hero with plain HTML
+1. Create a super-hero with plain HTML
 ======================================
+
+Start with an empty HTML page, generate by yeoman.
 
 Create a super-hero with the HTML code:
 
@@ -28,7 +25,7 @@ Create a super-hero with the HTML code:
 
 Create a second super-hero with a copy-paste!
 
-3. Create a basic Polymer component
+2. Create a basic Polymer component
 ===================================
 
 ```
@@ -52,7 +49,7 @@ and use the new tag ```<super-hero></super-hero>``` in HTML.
 
 Integrate CSS in Polymer component ```<link rel="stylesheet" href="../styles/super-hero.css">``
 
-4. Add attribute heroId in component
+3. Add attribute heroId in component
 ====================================
 
 Add heroId attribute:
@@ -108,7 +105,7 @@ Now create heroes:
 **Template** ```x```
 
 
-5. Start the fight!
+4. Start the fight!
 ===================
 
 Add a button fight:
@@ -178,7 +175,7 @@ Update ```selectOne()``` method:
 **Template** ```x```
 
 
-6. Finalization
+5. Finalization
 ===============
 
 Create a web-animation:
@@ -226,6 +223,6 @@ Move this code in ```super-hero.js``` and add ```<script src="../scripts/super-h
 Move all ```<polymer-element>``` code in ```super-hero.html``` and add ```<link rel="import" href="webcomponents/super-hero.html">``` in HTML page.
 
 
-7. Finish presentation with Polymer overview
+6. Finish presentation with Polymer overview
 ============================================
 
