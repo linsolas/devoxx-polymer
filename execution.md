@@ -203,7 +203,7 @@ in ```win()``` method:
     }
 ```
 
-**Template*** ```x```
+**Template** ```x```
 
 and for ```lose()```:
 
@@ -222,7 +222,7 @@ and for ```lose()```:
     }
 ```
 
-**Template*** ```x```
+**Template** ```x```
 
 Move this code in ```super-hero.js``` and add ```<script src="../scripts/super-hero.js"></script>``` in Polymer component.
 
