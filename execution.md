@@ -1,3 +1,9 @@
+0. Introduction
+===============
+
+Presentation of speakers + short introduction to Google Polymer. Also, what we want to do = create a Super Hero, and Fight!
+
+
 1. Create a super-hero with plain HTML
 ======================================
 
