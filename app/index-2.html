@@ -26,7 +26,8 @@
     </div>
 
     <div class="row" style="text-align: center">
-        <button class="btn btn-danger btn-lg" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+        <button class="btn btn-danger btn-lg col-lg-2 col-lg-offset-1" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+        <pre class="col-lg-7 col-lg-offset-1" id="results">No fight yet</pre>
     </div>
 
     <h2>Heroes</h2>
@@ -67,7 +68,7 @@
     function selectOne() {
         var heroes = document.querySelectorAll('super-hero');
         var r = Math.floor(Math.random() * heroes.length);
-        console.log('Select ' + r);
+        document.querySelector('#results').innerHTML = heroes[r].hero.name + ' wins';
         for (var i = 0; i < heroes.length; i++) {
             if (i == r) {
                 heroes[i].win();

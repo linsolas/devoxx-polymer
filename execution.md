@@ -115,7 +115,8 @@ Add a button fight:
 
 ```
     <div class="row" style="text-align: center">
-        <button class="btn btn-danger btn-lg" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+        <button class="btn btn-danger btn-lg col-lg-2 col-lg-offset-1" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
+        <pre class="col-lg-7 col-lg-offset-1" id="results">No fight yet</pre>
     </div>
 ```
 
@@ -126,13 +127,7 @@ and the JavaScript ```selectOne``` function:
     function selectOne() {
         var heroes = document.querySelectorAll('super-hero');
         var r = Math.floor(Math.random() * heroes.length);
-        for (var i = 0; i < heroes.length; i++) {
-            if (i == r) {
-                // WIN
-            } else {
-                // LOSE
-            }
-        }
+        document.querySelector('#results').innerHTML = heroes[r].hero.name + ' wins';
     }
 </script>
 ```
@@ -162,6 +157,21 @@ Add ```win()``` and ```lose()``` functions in ```<super-hero>``` component:
     },
     loose: function() {
         this.losses++;
+    }
+```
+
+Update ```selectOne()``` method:
+
+```
+    function selectOne() {
+        ...
+        for (var i = 0; i < heroes.length; i++) {
+            if (i == r) {
+                heroes[i].win();
+            } else {
+                heroes[i].loose();
+            }
+        }
     }
 ```
 
