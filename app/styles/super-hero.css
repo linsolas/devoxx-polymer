@@ -54,3 +54,11 @@
     font-weight: bold;
     text-align: center;
 }
+
+.hero .wins {
+    color: green;
+}
+
+.hero .losses {
+    color: red;
+}
