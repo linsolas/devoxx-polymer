@@ -1,49 +1,29 @@
 <!doctype html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
+    <title>Marvel Application by Polymer</title>
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+</head>
+<body>
 
-      <script src="bower_components/platform/platform.js"></script>
-      <script src="bower_components/polymer/polymer.js"></script>
-      <script src="bower_components/web-animations-js/web-animations.js"></script>
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li class="active"><a ng-href="#">Home</a></li>
+            <li><a ng-href="#">About</a></li>
+            <li><a ng-href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">Marvel Application powered by Polymer</h3>
+    </div>
 
-      <link rel="import" href="webcomponents/super-hero.html">
-      <link rel="import" href="webcomponents/fight-arena.html">
-  </head>
-  <body ng-app="testMarvelApp">
-
-    <!-- Add your site or application content here -->
-    <div class="container" ng-view=""></div>
-
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/services/app-service.js"></script>
-        <!-- endbuild -->
+    <div class="footer">
+        <p>Made with love by <a href="https://twitter.com/romaintaz">Romain</a> and <a href="https://twitter.com/jak78">Julien</a>
+            for <a href="http://www.devoxx.fr">Devoxx France 2014</a></p>
+    </div>
+</div>
 
 </body>
 </html>
