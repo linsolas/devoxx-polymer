@@ -95,13 +95,12 @@ Add heroId attribute:
 Now create heroes:
 
 ```
-    <div class="row">
+    <div class="row row-super-hero">
         <super-hero heroId="1009718"></super-hero>
         <super-hero heroId="1009351"></super-hero>
         <super-hero heroId="1009610"></super-hero>
     </div>
-    <br>
-    <div class="row">
+    <div class="row row-super-hero">
         <super-hero heroId="1009368"></super-hero>
         <super-hero heroId="1009664"></super-hero>
         <super-hero heroId="1009220"></super-hero>
@@ -117,7 +116,7 @@ Now create heroes:
 Add a button fight:
 
 ```
-    <div class="row" style="text-align: center">
+    <div class="row row-fight">
         <button class="btn btn-danger btn-lg col-lg-2 col-lg-offset-1" onclick="selectOne()"><span class="glyphicon glyphicon-fire"></span> FIGHT</button>
         <pre class="col-lg-7 col-lg-offset-1" id="results">No fight yet</pre>
     </div>
