@@ -15,7 +15,7 @@ Create a super-hero with the HTML code:
 <div class="col-lg-4">
     <div id="box" class="hero">
         <span class="profile">
-            <img src="http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55.jpg">
+            <img src="images/1009368.jpg">
         </span>
         <div class="info">
             <div class="desc">
@@ -66,7 +66,7 @@ Add heroId attribute:
     <div class="col-lg-4">
         <div id="box" class="hero">
             <span class="profile">
-                <img src="{{ hero.thumbnail.path + '.' + hero.thumbnail.extension }}">
+                <img src="{{ heroId + '.' + hero.thumbnail.extension }}">
             </span>
             <div class="info">
                 <div class="desc">
