@@ -15,8 +15,8 @@
                 </div>
                 <div class="fights">
                     {{ success }}% |
-                    <span style="color: green">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
-                    <span style="color: red">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
+                    <span class="wins">{{ wins }} <span class="glyphicon glyphicon-thumbs-up"></span></span> |
+                    <span class="losses">{{ losses }} <span class="glyphicon glyphicon-thumbs-down"></span></span>
                 </div>
             </div>
         </div>
@@ -44,7 +44,6 @@
             return {
                 ready: function () {
                     this.hero = fetch(this.heroId);
-                    console.dir(this.hero);
                     this.wins = 0;
                     this.losses = 0;
                 },
