@@ -15,12 +15,12 @@
 </head>
 <body>
 
-<polymer-element name="super-hero">
+<polymer-element name="super-hero" attributes="heroId">
     <template>
         <div class="col-lg-4">
             <div id="box" class="hero">
                 <span class="profile">
-                    <img src="images/1009220.jpg">
+                    <img src="images/{{ heroId }}.jpg">
                 </span>
                 <div class="info">
                     <div class="desc">
