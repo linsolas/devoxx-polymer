@@ -15,6 +15,33 @@
 </head>
 <body>
 
+<polymer-element name="super-hero">
+    <template>
+        <div class="col-lg-4">
+            <div id="box" class="hero">
+                <span class="profile">
+                    <img src="images/1009220.jpg">
+                </span>
+                <div class="info">
+                    <div class="desc">
+                        <strong>Captain America</strong>
+                        <span>Is the best of all</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <script>
+        var module = (function() {
+            return {
+                ready: function () {
+                }
+            }
+        })();
+        Polymer('super-hero', module);
+    </script>
+</polymer-element>
+
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
