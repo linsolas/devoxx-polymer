@@ -12,22 +12,24 @@ Start with an empty HTML page, generate by yeoman.
 Create a super-hero with the HTML code:
 
 ```
-<div class="col-lg-4">
-    <div id="box" class="hero">
-        <span class="profile">
-            <img src="images/1009368.jpg">
-        </span>
-        <div class="info">
-            <div class="desc">
-                <strong>Iron Man</strong>
-                <span>Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.</span>
+<div class="row row-super-hero">
+    <div class="col-lg-4">
+        <div id="box" class="hero">
+            <span class="profile">
+                <img src="images/1009368.jpg">
+            </span>
+            <div class="info">
+                <div class="desc">
+                    <strong>Iron Man</strong>
+                    <span>Wounded, captured and forced to build a weapon by his enemies, billionaire industrialist Tony Stark instead created an advanced suit of armor to save his life and escape captivity. Now with a new outlook on life, Tony uses his money and intelligence to make the world a safer, better place as Iron Man.</span>
+                </div>
             </div>
         </div>
     </div>
 </div>
 ```
 
-**Template** ```x```
+**Template** ```dvx1```
 
 Create a second super-hero with a copy-paste!
 
@@ -51,9 +53,10 @@ Create a second super-hero with a copy-paste!
 </polymer-element>
 ```
 
+**Template** ```dvx2```
+
 and use the new tag ```<super-hero></super-hero>``` in HTML.
 
-Integrate CSS in Polymer component ```<link rel="stylesheet" href="../styles/super-hero.css">``
 
 3. Add attribute heroId in component
 ====================================
@@ -107,7 +110,7 @@ Now create heroes:
     </div>
 ```
 
-**Template** ```x```
+**Template** ```dvx3```
 
 
 4. Start the fight!
@@ -122,6 +125,8 @@ Add a button fight:
     </div>
 ```
 
+**Template** ```dvx4```
+
 and the JavaScript ```selectOne``` function:
 
 ```
@@ -134,7 +139,7 @@ and the JavaScript ```selectOne``` function:
 </script>
 ```
 
-**Template** ```x```
+**Template** ```dvx5```
 
 Add ```win()``` and ```lose()``` functions in ```<super-hero>``` component:
 
@@ -146,18 +151,19 @@ Add ```win()``` and ```lose()``` functions in ```<super-hero>``` component:
     </div>
 ```
 
+**Template** ```dvx6```
+
 
 ```
-    get success() {
-        if (this.wins + this.losses == 0) {
-            return '-';
-        }
-        return Math.floor((this.wins / (this.wins + this.losses)) * 100);
+    ready: function() {
+        this.hero = fetch(this.heroId),
+        this.wins = 0;
+        this.losses = 0;
     },
     win: function() {
         this.wins++;
     },
-    loose: function() {
+    lose: function() {
         this.losses++;
     }
 ```
@@ -177,7 +183,18 @@ Update ```selectOne()``` method:
     }
 ```
 
-**Template** ```x```
+Show that it works. Now introduce the ```get``` concept to calculate the success percentage:
+
+```
+    get success() {
+        if (this.wins + this.losses == 0) {
+            return '-';
+        }
+        return Math.floor((this.wins / (this.wins + this.losses)) * 100);
+    },
+```
+
+**Template** ```dvx7```
 
 
 5. Finalization
@@ -202,12 +219,12 @@ in ```win()``` method:
     }
 ```
 
-**Template** ```x```
+**Template** ```dvx8```
 
 and for ```lose()```:
 
 ```
-    loose: function() {
+    lose: function() {
         this.losses++;
         var animation = new Animation(elt, [
             { "opacity": 1 },
@@ -221,11 +238,32 @@ and for ```lose()```:
     }
 ```
 
-**Template** ```x```
-
-Move this code in ```super-hero.js``` and add ```<script src="../scripts/super-hero.js"></script>``` in Polymer component.
+**Template** ```dvx9```
 
 Move all ```<polymer-element>``` code in ```super-hero.html``` and add ```<link rel="import" href="webcomponents/super-hero.html">``` in HTML page.
+
+
+Show it works. Now, before the ```<super-hero>```, add:
+
+```
+<style>
+    .hero {
+        border: solid 1px red;
+    }
+</styles>
+```
+
+and after:
+
+```
+<div class="hero">Hello</div>
+```
+
+Show that this red border is applied on ```<super-hero>``` and that the added ```div``` looks like a ```<super-hero>```.
+
+Move CSS ```super-hero.css``` declaration in Polymer component ```<link rel="stylesheet" href="../styles/super-hero.css">```.
+
+Show that there is no more conflict.
 
 
 6. Finish presentation with Polymer overview
