@@ -5,6 +5,7 @@
     box-shadow: 3px 3px 3px darkgrey;
     transition: box-shadow 0.5s;
     vertical-align: top;
+    background: linear-gradient(white, lightblue);
 }
 
 .hero * {
