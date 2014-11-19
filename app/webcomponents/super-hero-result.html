@@ -1,12 +1,11 @@
 <polymer-element name="super-hero" attributes="heroId">
     <template>
-        <link rel="stylesheet" href="../styles/super-hero.css">
+        <link rel="stylesheet" href="../styles/super-hero.css"/>
         <div class="col-lg-4">
             <div id="box" class="hero">
-                <span class="profile">
-                    <img src="images/{{ heroId + '.' + hero.thumbnail.extension }}">
-                </span>
-
+                    <span class="profile">
+                        <img src="images/{{ heroId }}.jpg">
+                    </span>
                 <div class="info">
                     <div class="desc">
                         <strong>{{ hero.name }}</strong>
@@ -21,50 +20,39 @@
             </div>
         </div>
     </template>
-
-    <script src="/scripts/super-hero-result.js"></script>
-
     <script>
-        var module = (function() {
-            var fetch = function(id) {
-                var storedHero = localStorage.getItem('hero.' + id);
-                if (storedHero == null) { // Retrieve super-hero from Marvel server. Not for DEMO :o)
-                    console.log('Hero not found, looking for Marvel server...');
-                    var request = new XMLHttpRequest();
-                    request.open('GET', 'http://gateway.marvel.com/v1/public/characters/' + id + '?apikey=52ee0500e06b3f33ae51bf0a8922100b', true);
-                    request.onload = function() {
-                        var x = request.responseText;
-                        storedHero = JSON.parse(x).data.results[0];
-                        localStorage.setItem('hero.' + id, JSON.stringify(storedHero));
-                    };
-                    request.send();
-                }
-                return JSON.parse(storedHero);
-            };
-            return {
-                ready: function () {
-                    this.hero = fetch(this.heroId);
-                    this.wins = 0;
-                    this.losses = 0;
-                },
-                get success() {
-                    if (this.wins + this.losses == 0) {
-                        return '-';
-                    }
-                    return Math.floor((this.wins / (this.wins + this.losses)) * 100);
-                },
-                win: function() {
-                    this.wins++;
-                    var animation = winnerAnimation(this.$.box);
-                    document.timeline.play(animation);
-                },
-                loose: function() {
-                    this.losses++;
-                    var animation = loserAnimation(this.$.box);
-                    document.timeline.play(animation);
-                }
+        Polymer({
+            wins: 0,
+            losses: 0,
+            ready: function() {
+                var component = this;
+                $.getJSON('json/' + this.heroId + '.json').done(function(data) {
+                    component.hero = data;
+                });
+            },
+            win: function() {
+                this.wins++;
+                console.log('Animate for WINNER');
+                var animation = new Animation(this.$.box, [
+                    { "box-shadow": "3px 3px 3px darkgrey" },
+                    { "box-shadow": "0 0 50px green" }
+                ], {
+                    duration: 2000
+                });
+                document.timeline.play(animation);
+            },
+            lose: function() {
+                this.losses++;
+                var animation = new Animation(this.$.box, [
+                    { "opacity": 1 },
+                    { "opacity": 0 },
+                    { "opacity": 1 }
+                ], {
+                    duration: 2000,
+                    delay: 1000
+                });
+                document.timeline.play(animation);
             }
-        })();
-        Polymer('super-hero', module);
+        });
     </script>
 </polymer-element>

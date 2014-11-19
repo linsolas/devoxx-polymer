@@ -37,8 +37,8 @@ Create a second super-hero with a copy-paste!
 ===================================
 
 ```
-<script src="bower_components/platform/platform.js"></script>
-<script src="bower_components/polymer/polymer.js"></script>
+<script src="bower_components/webcomponentsjs/webcomponentsjs.min.js"></script>
+<script src="bower_components/polymer/polymer.min.js"></script>
 
 
 <polymer-element name="super-hero">
@@ -46,9 +46,8 @@ Create a second super-hero with a copy-paste!
         -- HTML --
     </template>
     <script>
-        var module = (function() {
-        })();
-        Polymer('super-hero', module);
+        Polymer({
+        });
     </script>
 </polymer-element>
 ```
@@ -65,11 +64,11 @@ Add heroId attribute:
 
 ```
 <polymer-element name="super-hero" attributes="heroId">
-    <link rel="stylesheet" href="../styles/super-hero.css">
+    <link rel="stylesheet" href="styles/super-hero.css">
     <div class="col-lg-4">
         <div id="box" class="hero">
             <span class="profile">
-                <img src="{{ heroId + '.' + hero.thumbnail.extension }}">
+                <img src="images/{{ heroId }}.jpg">
             </span>
             <div class="info">
                 <div class="desc">
@@ -80,17 +79,14 @@ Add heroId attribute:
         </div>
     </div>
     <script>
-        var module = (function() {
-            var fetch = function(id) {
-                var storedHero = localStorage.getItem('hero.' + id);
-                return JSON.parse(storedHero);
-            };
-            return {
-                ready: function () {
-                    this.hero = fetch(this.heroId);
-                }
-            };
-        })();
+        Polymer({
+            ready: function() {
+                var component = this;
+                $.getJSON('json/' + this.heroId + '.json').done(function(data) {
+                    component.hero = data;
+                });
+            }
+        });
     </script>
 </polymer-element>
 ```
@@ -155,10 +151,10 @@ Add ```win()``` and ```lose()``` functions in ```<super-hero>``` component:
 
 
 ```
+    wins: 0,
+    losses: 0,
     ready: function() {
-        this.hero = fetch(this.heroId),
-        this.wins = 0;
-        this.losses = 0;
+        ...
     },
     win: function() {
         this.wins++;
@@ -183,6 +179,9 @@ Update ```selectOne()``` method:
     }
 ```
 
+**Template** ```dvx7```
+
+
 Show that it works. Now introduce the ```get``` concept to calculate the success percentage:
 
 ```
@@ -194,7 +193,7 @@ Show that it works. Now introduce the ```get``` concept to calculate the success
     },
 ```
 
-**Template** ```dvx7```
+**Template** ```dvx8```
 
 
 5. Finalization
@@ -213,13 +212,13 @@ in ```win()``` method:
             { "box-shadow": "3px 3px 3px darkgrey" },
             { "box-shadow": "0 0 50px green" }
         ], {
-            duration: 2
+            duration: 2000
         });
         document.timeline.play(animation);
     }
 ```
 
-**Template** ```dvx8```
+**Template** ```dvx9```
 
 and for ```lose()```:
 
@@ -231,14 +230,14 @@ and for ```lose()```:
             { "opacity": 0 },
             { "opacity": 1 }
         ], {
-            duration: 2,
-            delay: 1
+            duration: 2000,
+            delay: 1000
         });
         document.timeline.play(animation);
     }
 ```
 
-**Template** ```dvx9```
+**Template** ```dvx10```
 
 Move all ```<polymer-element>``` code in ```super-hero.html``` and add ```<link rel="import" href="webcomponents/super-hero.html">``` in HTML page.
 

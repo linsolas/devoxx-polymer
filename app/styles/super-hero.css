@@ -65,10 +65,9 @@
 }
 
 .col-lg-4 {
-    width: 33.3333%;
+    width: 32%;
     float: left;
     position: relative;
     min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 10px;
 }

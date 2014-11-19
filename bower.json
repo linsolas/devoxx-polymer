@@ -6,10 +6,11 @@
     "es5-shim": "~2.1.0",
     "jquery": "~1.10.2",
     "bootstrap": "~3.0.3",
-    "polymer": "~0.2.1",
+    "polymer": "~0.5.1",
     "polymer-animation": "PolymerLabs/polymer-animation#~0.2.2"
   },
-  "devDependencies": {
-    "polymer-elements": "~0.2.1"
+  "resolutions": {
+    "polymer": "~0.5.1",
+    "core-component-page": "^0.5.0"
   }
 }
