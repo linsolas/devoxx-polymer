@@ -63,3 +63,12 @@
 .hero .losses {
     color: red;
 }
+
+.col-lg-4 {
+    width: 33.3333%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
