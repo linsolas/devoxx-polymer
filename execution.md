@@ -33,7 +33,27 @@ Create a super-hero with the HTML code:
 
 Create a second super-hero with a copy-paste!
 
-2. Create a basic Polymer component
+2. Target solution
+==================
+
+
+```
+    <div class="row row-super-hero">
+        <super-hero heroId="1009718"></super-hero>
+        <super-hero heroId="1009351"></super-hero>
+        <super-hero heroId="1009610"></super-hero>
+    </div>
+    <div class="row row-super-hero">
+        <super-hero heroId="1009368"></super-hero>
+        <super-hero heroId="1009664"></super-hero>
+        <super-hero heroId="1009220"></super-hero>
+    </div>
+```
+
+**Template** ```dvx2```
+
+
+3. Create a basic Polymer component
 ===================================
 
 ```
@@ -41,7 +61,7 @@ Create a second super-hero with a copy-paste!
 <script src="bower_components/polymer/polymer.min.js"></script>
 
 
-<polymer-element name="super-hero">
+<polymer-element name="super-hero" attributes="heroId">
     <template>
         -- HTML --
     </template>
@@ -52,18 +72,17 @@ Create a second super-hero with a copy-paste!
 </polymer-element>
 ```
 
-**Template** ```dvx2```
+**Template** ```dvx3```
 
-and use the new tag ```<super-hero></super-hero>``` in HTML.
+and see the new tag ```<super-hero></super-hero>``` in action.
 
 
-3. Add attribute heroId in component
-====================================
+4. Retrieve JSON data
+=====================
 
-Add heroId attribute:
 
 ```
-<polymer-element name="super-hero" attributes="heroId">
+<polymer-element name="super-hero">
     <link rel="stylesheet" href="styles/super-hero.css">
     <div class="col-lg-4">
         <div id="box" class="hero">
@@ -91,25 +110,8 @@ Add heroId attribute:
 </polymer-element>
 ```
 
-Now create heroes:
 
-```
-    <div class="row row-super-hero">
-        <super-hero heroId="1009718"></super-hero>
-        <super-hero heroId="1009351"></super-hero>
-        <super-hero heroId="1009610"></super-hero>
-    </div>
-    <div class="row row-super-hero">
-        <super-hero heroId="1009368"></super-hero>
-        <super-hero heroId="1009664"></super-hero>
-        <super-hero heroId="1009220"></super-hero>
-    </div>
-```
-
-**Template** ```dvx3```
-
-
-4. Start the fight!
+5. Start the fight!
 ===================
 
 Add a button fight:
@@ -196,8 +198,8 @@ Show that it works. Now introduce the ```get``` concept to calculate the success
 **Template** ```dvx8```
 
 
-5. Finalization
-===============
+6. Animation
+============
 
 Create a web-animation:
 
@@ -239,32 +241,9 @@ and for ```lose()```:
 
 **Template** ```dvx10```
 
+7. Externalization
+==================
+
+
 Move all ```<polymer-element>``` code in ```super-hero.html``` and add ```<link rel="import" href="webcomponents/super-hero.html">``` in HTML page.
-
-
-Show it works. Now, before the ```<super-hero>```, add:
-
-```
-<style>
-    .hero {
-        border: solid 1px red;
-    }
-</styles>
-```
-
-and after:
-
-```
-<div class="hero">Hello</div>
-```
-
-Show that this red border is applied on ```<super-hero>``` and that the added ```div``` looks like a ```<super-hero>```.
-
-Move CSS ```super-hero.css``` declaration in Polymer component ```<link rel="stylesheet" href="../styles/super-hero.css">```.
-
-Show that there is no more conflict.
-
-
-6. Finish presentation with Polymer overview
-============================================
 
