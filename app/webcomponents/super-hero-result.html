@@ -30,6 +30,12 @@
                     component.hero = data;
                 });
             },
+            get success() {
+                if (this.wins + this.losses === 0) {
+                    return '-';
+                }
+                return Math.floor((this.wins / (this.wins + this.losses)) * 100);
+            },
             win: function() {
                 this.wins++;
                 console.log('Animate for WINNER');
