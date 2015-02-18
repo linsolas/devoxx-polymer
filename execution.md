@@ -210,13 +210,13 @@ in ```win()``` method:
 ```
     win: function() {
         this.wins++;
-        var animation = new Animation(elt, [
+        this.$.box.animate([
             { "box-shadow": "3px 3px 3px darkgrey" },
-            { "box-shadow": "0 0 50px green" }
+            { "box-shadow": "0 0 50px green" },
+            { "box-shadow": "3px 3px 3px darkgrey" },
         ], {
-            duration: 2000
+            duration: 1500
         });
-        document.timeline.play(animation);
     }
 ```
 
@@ -227,15 +227,13 @@ and for ```lose()```:
 ```
     lose: function() {
         this.losses++;
-        var animation = new Animation(elt, [
+        this.$.box.animate([
             { "opacity": 1 },
             { "opacity": 0 },
             { "opacity": 1 }
         ], {
-            duration: 2000,
-            delay: 1000
+            duration: 2000
         });
-        document.timeline.play(animation);
     }
 ```
 

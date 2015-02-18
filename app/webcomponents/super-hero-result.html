@@ -39,25 +39,23 @@
             win: function() {
                 this.wins++;
                 console.log('Animate for WINNER');
-                var animation = new Animation(this.$.box, [
+                this.$.box.animate([
                     { "box-shadow": "3px 3px 3px darkgrey" },
-                    { "box-shadow": "0 0 50px green" }
+                    { "box-shadow": "0 0 50px green" },
+                    { "box-shadow": "3px 3px 3px darkgrey" },
                 ], {
-                    duration: 2000
+                    duration: 1500
                 });
-                document.timeline.play(animation);
             },
             lose: function() {
                 this.losses++;
-                var animation = new Animation(this.$.box, [
+                this.$.box.animate([
                     { "opacity": 1 },
                     { "opacity": 0 },
                     { "opacity": 1 }
                 ], {
-                    duration: 2000,
-                    delay: 1000
+                    duration: 2000
                 });
-                document.timeline.play(animation);
             }
         });
     </script>
