@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Marvel Application by Polymer</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="styles/main.css">
+
+  <link rel="import" href="bower_components/paper-elements/paper-elements.html">
+  <link rel="import" href="bower_components/core-toolbar/core-toolbar.html">
+  <link rel="import" href="bower_components/core-header-panel/core-header-panel.html">
+  <link rel="import" href="bower_components/core-icons/core-icons.html">
+
+</head>
+
+<body fullbleed vertical layout >
+
+<core-header-panel flex>
+  <core-toolbar id="mainheader">
+    <paper-icon-button id="navicon" icon="arrow-back"></paper-icon-button>
+    <span flex>A Google Material Design page with Polymer...</span>
+    <paper-icon-button id="searchbutton" icon="search"></paper-icon-button>
+  </core-toolbar>
+</core-header-panel>
+
+<main>
+  <h4>Personal information</h4>
+
+  <paper-input floatingLabel label="Your Name"></paper-input>
+  &nbsp;
+  <paper-input floatingLabel label="Your last name"></paper-input>
+
+
+  <h4>Your gender</h4>
+  <paper-radio-group selected="small">
+    <paper-radio-button name="small" label="Female"></paper-radio-button>
+    <paper-radio-button name="medium" label="Male"></paper-radio-button>
+    <paper-radio-button name="large" label="Not totally sure"></paper-radio-button>
+  </paper-radio-group>
+
+
+  <h4>Your preferences</h4>
+  <core-label horizontal layout>
+    <paper-checkbox for></paper-checkbox>
+    <div>I like Web Components</div>
+  </core-label>
+  <br/>
+  <core-label horizontal layout>
+    <paper-checkbox for></paper-checkbox>
+    <div>I like Polymer</div>
+  </core-label>
+  <hr>
+
+  <paper-button raised class="colored" onclick="document.querySelector('#toast').show()">Submit</paper-button>
+
+  <paper-toast id="toast" text="Thanks for your submission"></paper-toast>
+
+</main>
+</body>
+
+</html>

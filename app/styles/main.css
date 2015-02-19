@@ -95,3 +95,19 @@ body {
 .row-super-hero {
     margin-bottom: 1em;
 }
+
+main {
+  padding: 20px;
+}
+core-label div {
+  margin-left: 10px;
+}
+paper-button.colored {
+  background: #4285f4;
+  color: #fff;
+}
+paper-toast {
+  right: 10px;
+  left: auto;
+}
+

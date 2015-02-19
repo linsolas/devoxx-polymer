@@ -7,7 +7,8 @@
     "jquery": "~1.10.2",
     "bootstrap": "~3.0.3",
     "polymer": "~0.5.1",
-    "polymer-animation": "PolymerLabs/polymer-animation#~0.2.2"
+    "polymer-animation": "PolymerLabs/polymer-animation#~0.2.2",
+    "paper-elements": "Polymer/paper-elements#~0.5.5"
   },
   "resolutions": {
     "polymer": "~0.5.1",
